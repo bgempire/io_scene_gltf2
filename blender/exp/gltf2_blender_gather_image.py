@@ -120,6 +120,8 @@ def __gather_name(sockets_or_slots, export_settings):
 def __gather_uri(image_data, mime_type, name, export_settings):
     if export_settings[gltf2_blender_export_keys.FORMAT] == 'GLTF_SEPARATE':
         # as usual we just store the data in place instead of already resolving the references
+        from pathlib import Path
+        name = Path(name).stem
         return gltf2_io_image_data.ImageData(
             data=image_data.encode(mime_type=mime_type),
             mime_type=mime_type,
